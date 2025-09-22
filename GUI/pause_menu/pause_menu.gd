@@ -11,6 +11,7 @@ signal preview_stats_changed(item: ItemData)
 @onready var button_save: Button = $Control/TabContainer/System/VBoxContainer/Button_Save
 @onready var button_load: Button = $Control/TabContainer/System/VBoxContainer/Button_Load
 @onready var button_quit: Button = $Control/TabContainer/System/VBoxContainer/Button_Quit
+@onready var button_close: Button = $Control/TabContainer/System/VBoxContainer/Button_Close
 
 @onready var item_description: Label = $Control/TabContainer/Inventory/ItemDescription
 
@@ -22,6 +23,7 @@ func _ready() -> void:
 	button_save.pressed.connect(_on_save_menu)
 	button_load.pressed.connect(_on_load_menu)
 	button_quit.pressed.connect(_on_quit_menu)
+	button_close.pressed.connect(_on_close_menu)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
@@ -66,6 +68,9 @@ func _on_load_menu() -> void:
 
 func _on_quit_menu() -> void:
 	get_tree().quit()
+
+func _on_close_menu() -> void:
+	hide_pause_menu()
 	
 func focused_item_changed(slot: SlotData) -> void:
 	if slot:

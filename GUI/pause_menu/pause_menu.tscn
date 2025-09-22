@@ -460,6 +460,11 @@ custom_minimum_size = Vector2(75, 0)
 layout_mode = 2
 text = "Quit"
 
+[node name="Button_Close" type="Button" parent="Control/TabContainer/System/VBoxContainer"]
+custom_minimum_size = Vector2(75, 0)
+layout_mode = 2
+text = "Close"
+
 [node name="Label" type="Label" parent="Control"]
 layout_mode = 1
 anchors_preset = 5
