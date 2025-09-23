@@ -14,8 +14,8 @@ signal preview_stats_changed(item: ItemData)
 @onready var button_close: Button = $Control/TabContainer/System/VBoxContainer/Button_Close
 
 @onready var item_description: Label = $Control/TabContainer/Inventory/ItemDescription
-@onready var button_close_inventory: Button = $Control/TabContainer/Inventory/Button_Close_Inventory
-@onready var button_close_quest: Button = $Control/TabContainer/Quest/Button_Close_Quest
+var button_close_inventory: Button
+var button_close_quest: Button
 
 
 var is_paused: bool = false
@@ -26,8 +26,14 @@ func _ready() -> void:
 	button_load.pressed.connect(_on_load_menu)
 	button_quit.pressed.connect(_on_quit_menu)
 	button_close.pressed.connect(_on_close_menu)
-	button_close_inventory.pressed.connect(_on_close_menu)
-	button_close_quest.pressed.connect(_on_close_menu)
+
+	button_close_inventory = get_node_or_null("Control/TabContainer/Inventory/Button_Close_Inventory")
+	if button_close_inventory:
+		button_close_inventory.pressed.connect(_on_close_menu)
+
+	button_close_quest = get_node_or_null("Control/TabContainer/Quest/Button_Close_Quest")
+	if button_close_quest:
+		button_close_quest.pressed.connect(_on_close_menu)
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
